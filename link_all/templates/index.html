@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block content%}
+Index page with all URLs in the project.
+{% for url in urls %}
+<a href="/{{ url }}">{{ url }}</a>
+<br />
+{% endfor %}
+{% endblock %}
+
+{% block footer_block %}
+Footer
+{% endblock footer_block %}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://kit.fontawesome.com/03c7d53b02.js" crossorigin="anonymous"></script>
+        {% block meta %}
+        {% endblock %}
+    </head>
+
+
+    <!-- Navbar -->
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    <body>
+        {% block content%}
+        {% endblock %}
+    </body>
+
+
+    {% block footer_block %}
+    {% endblock footer_block %}
+
+
+</html>
