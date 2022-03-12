@@ -138,4 +138,5 @@ MEDIA_URL = '/media/' # Public URL at the browser
 # For django-registration-redux
 
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
-SIMPLE_BACKEND_REDIRECT_URL = '/' # Redirect to this URL after registration.
+SIMPLE_BACKEND_REDIRECT_URL = '/accounts/update/' # Redirect to this URL after registration.
+LOGOUT_REDIRECT_URL = '/' # Redirect to this URL after logout.
