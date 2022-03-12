@@ -28,6 +28,7 @@ def list_urls(lis, acc=None):
 def index(request):
     """
     Index page with all URLs in the project
+    URL config: /
     """
     urlconf = __import__(settings.ROOT_URLCONF, {}, {}, [""])
     urls = []
@@ -40,13 +41,10 @@ def index(request):
 
     return render(request, "index.html", context_dict)
 
-
-# TODO: Implement the following views:
-# SIMPLE_BACKEND_REDIRECT_URL = '/accounts/update/' # Redirect to this URL after registration.
-# LOGIN_REDIRECT_URL = '/profile/' # Redirect to this URL after login.
 class UserProfileDetailView(DetailView):
     """
     Detail view for a user profile
+    URL config: /profile/<username>/
     """
 
     model = Profile
@@ -70,10 +68,11 @@ class UserProfileRedirectView(RedirectView):
     """
     Redirect view for a user profile with URL pattern "/accounts/profile"
     Redirect to the profile of the current logged in user if logged in, homepage otherwise.
+    URL config: /accounts/profile/ => /profile/<username>/
     """
     pattern_name = "profile-detail"
 
-    def get_redirect_url(self, *args, **kwargs):
+    def get_redirect_url(self):
         if self.request.user.is_authenticated:
             return reverse(
                 self.pattern_name,
@@ -86,6 +85,7 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     """
     Update view for a user profile
     Only accessible when logged in
+    URL config: /profile/update/
     """
     model = Profile
     fields = ["display_name", "bio", "profile_photo", "background_photo"]

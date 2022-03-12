@@ -3,22 +3,22 @@ from django.contrib.auth.models import User
 
 # Link model
 class Link(models.Model):
-    url = models.URLField(blank = False)
-    title = models.CharField(blank = False, max_length = 300)
-    
+    url = models.URLField(blank=False)
+    title = models.CharField(blank=False, max_length=300)
+
     # Many to One with user model
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
 
+
 # Social Media Buttons
 class SocialMedia(models.Model):
     url = models.URLField(blank=False)
-    name = models.CharField(blank=False, max_length = 300)
+    name = models.CharField(blank=False, max_length=300)
     # Many to One with user model
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
-

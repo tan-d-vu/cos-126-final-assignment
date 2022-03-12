@@ -1,4 +1,5 @@
-"""link_all URL Configuration
+"""
+manage_links URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -13,15 +14,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from manage_users import views as manage_user_views
-
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', manage_user_views.index, name='index'),
-    path('', include('manage_users.urls')),
-    path('', include('manage_links.urls')),
+    path('link/create/', views.LinkCreateView.as_view(), name='link_create'),
+    path('link/<pk>/update', views.LinkUpdateView.as_view(), name='link_update'),
+    path('social/create/', views.SocialButtonCreateView.as_view(), name='social_create'),
+    path('social/<pk>/update', views.SocialButtonUpdateView.as_view(), name='social_update'),
 ]
