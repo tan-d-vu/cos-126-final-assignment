@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -27,8 +28,11 @@ class ManageLinksMixin:
         )
         return context
 
-    # Redirect to the profile of the current logged in user
     def get_success_url(self):
+        """
+        Redirect to the profile of the current logged in user upon successful operation
+        """
+
         return reverse(
             "profile-detail",
             kwargs={"username": self.request.user.username},
@@ -92,4 +96,28 @@ class SocialButtonUpdateView(
 
     model = SocialMedia
     fields = ["url", "name"]
+    template_name = "manage_links/link_form.html"
+
+class LinkDeleteView(LoginRequiredMixin, ManageLinksMixin, DeleteView):
+    """
+    Delete link
+    Accessible by logged in users
+    URL config: /link/<pk>/delete/
+    """
+    model = Link
+    template_name = "manage_links/link_form.html"
+
+    def form_valid(self, form):
+        # Reimplement original form_valid method
+        success_url = self.get_success_url()
+        self.object.delete()
+        return HttpResponseRedirect(success_url)
+
+class SocialButtonDeleteView(LinkDeleteView):
+    """
+    Delete social media button
+    Accessible by logged in users
+    URL config: /social/<pk>/delete/
+    """
+    model = SocialMedia
     template_name = "manage_links/link_form.html"

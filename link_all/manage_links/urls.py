@@ -21,6 +21,8 @@ from . import views
 urlpatterns = [
     path('link/create/', views.LinkCreateView.as_view(), name='link_create'),
     path('link/<pk>/update', views.LinkUpdateView.as_view(), name='link_update'),
+    path('link/<pk>/delete', views.LinkDeleteView.as_view(), name='link_delete'),
     path('social/create/', views.SocialButtonCreateView.as_view(), name='social_create'),
     path('social/<pk>/update', views.SocialButtonUpdateView.as_view(), name='social_update'),
+    path('social/<pk>/delete', views.SocialButtonDeleteView.as_view(), name='social_delete'),
 ]
