@@ -20,14 +20,19 @@ from . import views
 
 urlpatterns = [
     path(
-        "profile/<username>/",
-        views.UserProfileDetailView.as_view(),
-        name="profile-detail",
-    ),
-    path(
         "accounts/profile/",
         views.UserProfileRedirectView.as_view(),
         name="profile-redirect",
     ),
-    path("accounts/", include("registration.backends.simple.urls")),
+    path(
+        "profile/update/",
+        views.UserProfileUpdateView.as_view(),
+        name="profile-update",
+    ),
+    path(
+        "profile/<username>/",
+        views.UserProfileDetailView.as_view(),
+        name="profile-detail",
+    ),
+    path("", include("registration.backends.simple.urls")),
 ]

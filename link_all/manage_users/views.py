@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.conf import settings
 from django.urls import URLPattern, URLResolver, reverse
-from django.views.generic import DetailView, RedirectView
+from django.views.generic import DetailView, RedirectView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from .models import Profile
 
@@ -67,11 +68,9 @@ class UserProfileDetailView(DetailView):
 
 class UserProfileRedirectView(RedirectView):
     """
-    Redirect view for a user profile when <username> is not given.
+    Redirect view for a user profile with URL pattern "/accounts/profile"
     Redirect to the profile of the current logged in user if logged in, homepage otherwise.
-
     """
-
     pattern_name = "profile-detail"
 
     def get_redirect_url(self, *args, **kwargs):
@@ -82,3 +81,30 @@ class UserProfileRedirectView(RedirectView):
             )
         else:
             return reverse("index")
+
+class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
+    """
+    Update view for a user profile
+    Only accessible when logged in
+    """
+    model = Profile
+    fields = ["display_name", "bio", "profile_photo", "background_photo"]
+    template_name = "manage_users/profile_update.html"
+
+    # Get user profile to update
+    def get_object(self, **kwargs):
+        user = self.request.user
+        return Profile.objects.get(user=user)
+
+    # Get current logged in user
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["current_user"] = self.request.user
+        return context
+
+    # Redirect to the profile of the current logged in user
+    def get_success_url(self):
+        return reverse(
+            "profile-detail",
+            kwargs={"username": self.request.user.username},
+        )
