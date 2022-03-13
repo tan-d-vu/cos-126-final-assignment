@@ -5,6 +5,7 @@ from django.views.generic import DetailView, RedirectView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from .models import Profile
+from manage_links.models import Link, SocialMedia
 
 # Getting a list of all url configs in the app
 # From:
@@ -57,10 +58,18 @@ class UserProfileDetailView(DetailView):
         user_to_display = User.objects.get(username=_username)
         return Profile.objects.get(user=user_to_display)
 
-    # Get current logged in user
+    # Get links associated with user profile and currently logged in user
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["current_user"] = self.request.user
+        context["current_user"] = self.request.user # Currently logged in user
+        # Get links associated with user profile
+        user_to_display = User.objects.get(username=self.kwargs["username"])
+        links = Link.objects.filter(user=user_to_display)
+        socials = SocialMedia.objects.filter(user=user_to_display)
+        print(links)
+        print(socials)
+        context['urls'] = links
+        context['socials'] = socials
         return context
 
 

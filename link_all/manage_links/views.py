@@ -71,7 +71,7 @@ class LinkUpdateView(LoginRequiredMixin, ManageLinksMixin, UpdateView):
     template_name = "manage_links/link_form.html"
 
 
-class SocialButtonCreateView(
+class SocialMediaCreateView(
     LoginRequiredMixin, ManageLinksMixin, CreateView
 ):
     """
@@ -85,7 +85,7 @@ class SocialButtonCreateView(
     template_name = "manage_links/link_form.html"
 
 
-class SocialButtonUpdateView(
+class SocialMediaUpdateView(
     LoginRequiredMixin, ManageLinksMixin, UpdateView
 ):
     """
@@ -113,7 +113,7 @@ class LinkDeleteView(LoginRequiredMixin, ManageLinksMixin, DeleteView):
         self.object.delete()
         return HttpResponseRedirect(success_url)
 
-class SocialButtonDeleteView(LinkDeleteView):
+class SocialMediaDeleteView(LinkDeleteView):
     """
     Delete social media button
     Accessible by logged in users
