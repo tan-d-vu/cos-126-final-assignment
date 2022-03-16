@@ -1,17 +1,85 @@
-{% extends 'base.html' %}
+{% extends 'manage_users/base.html' %}
+{% load static %}
+
 
 {% block title %}
 Profile Update
 {% endblock %}
 
 {% block content%}
-<form method="post" action="." enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
-</form>
-{% endblock %}
+<div class="container bg-light min-vh-100 w-50">
+    <form method="post" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row d-flex justify-content-center">
+            {% if user_profile.profile_photo %}
+            <img class="pfp rounded-circle mt-5 p-0" src="{{user_profile.profile_photo.url}}" alt="Profile Photo">
+            {% endif %}
+        </div>
 
-{% block footer_block %}
-Footer
-{% endblock footer_block %}
+        <div class="row">
+            <div class="col">
+                <h3 class="text-center text-black mb-0">{{ form.display_name }} </h3>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <p class="text-center text-black mb-0 text-break fs-6">
+                    {{ form.bio }}
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <button type="button" class="btn shadow-none" data-bs-toggle="modal" data-bs-target="#photoUpdateModal">
+                    Change Profile/Background Photo
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="photoUpdateModal" tabindex="-1" aria-labelledby="photoUpdateModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="photoUpdateModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row justify-content-center bg-white">
+                            <h4 class="text-center">Background Photo</h4>
+
+                            <div class="d-flex justify-content-center">
+                                <div>{{ form.background_photo }}</div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5 justify-content-center bg-white">
+                            <h4 class="text-center">Profile Photo</h4>
+
+                            <div class="d-flex justify-content-center">
+                                <div>{{ form.profile_photo }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="save_bgp_pfp" type="button" class="btn btn-primary"
+                            onclick="document.getElementById('submit_form').click()">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 justify-content-center">
+            <div class="col-md-6 text-center">
+                <button id="submit_form" type="submit" type="button" class="btn shadow-none" value="Update">
+                    Update
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

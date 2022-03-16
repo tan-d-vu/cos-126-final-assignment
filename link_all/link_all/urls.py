@@ -21,9 +21,13 @@ from manage_users import views as manage_user_views
 from django.conf.urls.static import static
 
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', manage_user_views.index, name='index'),
-    path('', include('manage_users.urls')),
-    path('', include('manage_links.urls')),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = (
+    [
+        path("admin/", admin.site.urls),
+        path("", manage_user_views.index, name="index"),
+        path("", include("manage_users.urls")),
+        path("", include("manage_links.urls")),
+    ]
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)

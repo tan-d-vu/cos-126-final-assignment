@@ -42,6 +42,7 @@ def index(request):
 
     return render(request, "index.html", context_dict)
 
+
 class UserProfileDetailView(DetailView):
     """
     Detail view for a user profile
@@ -61,15 +62,24 @@ class UserProfileDetailView(DetailView):
     # Get links associated with user profile and currently logged in user
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["current_user"] = self.request.user # Currently logged in user
+        context[
+            "current_user"
+        ] = self.request.user  # Currently logged in user
         # Get links associated with user profile
-        user_to_display = User.objects.get(username=self.kwargs["username"])
+        """
+        Bug: Missing user_to_display in context, in front end there will always
+        be the currently logged in user
+        (Confusing user_to_display and current_user)
+        => Add back in
+        Identify from assignment specs
+        """
+        user_to_display = User.objects.get(
+            username=self.kwargs["username"]
+        )
         links = Link.objects.filter(user=user_to_display)
         socials = SocialMedia.objects.filter(user=user_to_display)
-        print(links)
-        print(socials)
-        context['urls'] = links
-        context['socials'] = socials
+        context["urls"] = links
+        context["socials"] = socials
         return context
 
 
@@ -79,6 +89,7 @@ class UserProfileRedirectView(RedirectView):
     Redirect to the profile of the current logged in user if logged in, homepage otherwise.
     URL config: /accounts/profile/ => /profile/<username>/
     """
+
     pattern_name = "profile-detail"
 
     def get_redirect_url(self):
@@ -90,14 +101,21 @@ class UserProfileRedirectView(RedirectView):
         else:
             return reverse("index")
 
+
 class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     """
     Update view for a user profile
     Only accessible when logged in
     URL config: /profile/update/
     """
+
     model = Profile
-    fields = ["display_name", "bio", "profile_photo", "background_photo"]
+    fields = [
+        "display_name",
+        "bio",
+        "profile_photo",
+        "background_photo",
+    ]
     template_name = "manage_users/profile_update.html"
 
     # Get user profile to update
@@ -108,12 +126,15 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     # Get current logged in user
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["current_user"] = self.request.user
+        context["user_profile"] = Profile.objects.get(
+            user=self.request.user
+        )
         return context
 
     # Redirect to the profile of the current logged in user
+    """
+    Task: Implement get_success_url() to redirect to the profile of the current logged in user
+    """
+
     def get_success_url(self):
-        return reverse(
-            "profile-detail",
-            kwargs={"username": self.request.user.username},
-        )
+        return reverse("profile-update")

@@ -15,6 +15,11 @@ class Link(models.Model):
 
 # Social Media Buttons
 class SocialMedia(models.Model):
+    """
+    Bug: Missing blank=False field, user can create blank links
+    => Add it back in
+    Student have to identify bug from assignment specs
+    """
     url = models.URLField(blank=False)
     name = models.CharField(blank=False, max_length=300)
     # Many to One with user model

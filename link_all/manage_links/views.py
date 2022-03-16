@@ -10,9 +10,13 @@ class ManageLinksMixin:
     """
     Mixin containing common methods for all views in app manage_links
     """
+
     def form_valid(self, form):
         """
         Add ForeignKey relationship between new link and current logged in user
+        """
+        """
+        Task: Add ForeignKey relationship between new link and current logged in user
         """
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -32,7 +36,6 @@ class ManageLinksMixin:
         """
         Redirect to the profile of the current logged in user upon successful operation
         """
-
         return reverse(
             "profile-detail",
             kwargs={"username": self.request.user.username},
@@ -98,12 +101,14 @@ class SocialMediaUpdateView(
     fields = ["url", "name"]
     template_name = "manage_links/link_form.html"
 
+
 class LinkDeleteView(LoginRequiredMixin, ManageLinksMixin, DeleteView):
     """
     Delete link
     Accessible by logged in users
     URL config: /link/<pk>/delete/
     """
+
     model = Link
     template_name = "manage_links/link_form.html"
 
@@ -113,11 +118,13 @@ class LinkDeleteView(LoginRequiredMixin, ManageLinksMixin, DeleteView):
         self.object.delete()
         return HttpResponseRedirect(success_url)
 
+
 class SocialMediaDeleteView(LinkDeleteView):
     """
     Delete social media button
     Accessible by logged in users
     URL config: /social/<pk>/delete/
     """
+
     model = SocialMedia
     template_name = "manage_links/link_form.html"

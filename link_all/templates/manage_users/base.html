@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block meta %}
+<style>
+    body {
+        {% if user_profile.background_photo %}
+    background: url('{{user_profile.background_photo.url }}');
+        {% endif %}
+    }
+</style>
+<link rel="stylesheet" href="{% static 'manage_users/style.css' %}">
+{% endblock  %}
