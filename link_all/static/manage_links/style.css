@@ -1,0 +1,33 @@
+.btn:hover {
+    background-color: white;
+    color: black;
+
+}
+
+
+*:focus {
+    outline: none;
+}
+
+
+.btn {
+    border-radius: 0;
+    border: 0px;
+    color: white;
+    background-color: black;
+}
+
+.btn:hover {
+    background-color: white;
+    color: black;
+
+}
+
+.btn:focus {
+    color: white;
+    background-color: black;
+}
+
+.text-black {
+    color: black;
+}

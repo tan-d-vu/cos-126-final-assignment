@@ -9,7 +9,7 @@
     {% comment %}
     Top part: Profile picture, name, bio, and social media links
     {% endcomment %}
-    <div class="container bg-light min-vh-100 w-50">
+    <div class="container bg-light min-vh-100 w-lg-50">
         <div class="container">
             {% comment %}
             <img> is an inline element so we make it a block element
@@ -34,7 +34,7 @@
             </div>
             <div class="text-center">
                 {% for social in socials %}
-                <a class="fs-1 text-decoration-none p-0" href="{{ social.url }}"> <i class="bi bi-facebook"></i>
+                <a class="fs-1 text-decoration-none text-black" href="{{ social.url }}"> <i class="bi bi-{{social.name}}"></i>
                 </a>
                 {% endfor %}
             </div>

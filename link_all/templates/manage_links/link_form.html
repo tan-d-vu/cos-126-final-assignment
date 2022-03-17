@@ -1,15 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<link rel="stylesheet" href="{% static 'manage_links/style.css' %}">
+<link rel="stylesheet" href="{% static 'commons/commons.css' %}">
+
+
+{% endblock %}
 
 {% block title %}
 {{ title }}
 {% endblock %}
 
 {% block content%}
-<div class="container bg-light min-vh-100 w-50">
+<div class="container bg-light min-vh-100 w-md-50">
     <form method="post" action=".">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Update">
+        {% for field in form %}
+        <div class="row">
+            {{ field.label_tag }}
+            {{ field }}
+        </div>
+        {% endfor %}
+        
+        <div class="row mt-2 justify-content-center">
+            <div class="col-md-6 text-center">
+                <button id="submit_form" type="submit" type="button" class="btn shadow-none">
+                    Add
+                </button>
+            </div>
+        </div>    
     </form>
 </div>
 {% endblock %}
