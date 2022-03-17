@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Profile Update
+{{ title }}
 {% endblock %}
 
 {% block content%}
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
-</form>
+<div class="container bg-light min-vh-100 w-50">
+    <form method="post" action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update">
+    </form>
+</div>
 {% endblock %}
 
-{% block footer_block %}
-Footer
-{% endblock footer_block %}

@@ -30,6 +30,7 @@ class ManageLinksMixin:
         context["existing"] = self.model.objects.filter(
             user=self.request.user
         )
+        context["title"] = self.title
         return context
 
     def get_success_url(self):
@@ -60,6 +61,7 @@ class LinkCreateView(LoginRequiredMixin, ManageLinksMixin, CreateView):
     model = Link
     fields = ["url", "title"]
     template_name = "manage_links/link_form.html"
+    title = "Add Link"
 
 
 class LinkUpdateView(LoginRequiredMixin, ManageLinksMixin, UpdateView):
@@ -72,6 +74,7 @@ class LinkUpdateView(LoginRequiredMixin, ManageLinksMixin, UpdateView):
     model = Link
     fields = ["url", "title"]
     template_name = "manage_links/link_form.html"
+    title = "Update Link"
 
 
 class SocialMediaCreateView(
@@ -86,6 +89,7 @@ class SocialMediaCreateView(
     model = SocialMedia
     fields = ["url", "name"]
     template_name = "manage_links/link_form.html"
+    title = "Add Social Media"
 
 
 class SocialMediaUpdateView(
@@ -100,6 +104,7 @@ class SocialMediaUpdateView(
     model = SocialMedia
     fields = ["url", "name"]
     template_name = "manage_links/link_form.html"
+    title = "Update Social Media"
 
 
 class LinkDeleteView(LoginRequiredMixin, ManageLinksMixin, DeleteView):
