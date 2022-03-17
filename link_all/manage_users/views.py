@@ -36,7 +36,7 @@ def index(request):
     context_dict = {}
     for p in list_urls(urlconf.urlpatterns):
         url = "".join(p)
-        if "admin" not in url:
+        if "admin" not in url and "password" not in url:
             urls.append(url)
     context_dict["urls"] = urls
 

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+{% endblock %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content%}
+
+<div class="container bg-light min-vh-100 w-md-50 justify-content-center">
+    <div class="row my-3 justify-content-center">
+        <div class="col-md-6 text-center">
+            <h1>
+                {% block header %}
+                {{ title }}
+                {% endblock %}
+            </h1>
+
+        </div>
+
+    </div>
+    <form method="post" action=".">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="row justify-content-center">
+            <div class="row w-md-75">
+                {{ field.label_tag }}
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="row mt-2 justify-content-center">
+                <div class="row w-md-75">
+                    <button id="submit_form" type="submit" type="button" class="btn px-4 shadow-none">
+                        {% block button_text %}{% endblock %}
+                    </button>
+                </div>
+        </div>
+    </form>
+    {% block form_extra %}
+    {% endblock %}
+</div>
+
+{% endblock %}
