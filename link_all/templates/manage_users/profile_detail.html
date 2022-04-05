@@ -11,10 +11,6 @@
     {% endcomment %}
     <div class="container bg-light min-vh-100 w-lg-50">
         <div class="container">
-            {% comment %}
-            <img> is an inline element so we make it a block element
-            with d-flex and justify-content-center to make it center.
-            {% endcomment %}
             <div class="row d-flex justify-content-center">
                     {% if user_profile.profile_photo %}
                     <img class="pfp rounded-circle mt-5 p-0" src="{{user_profile.profile_photo.url}}"
