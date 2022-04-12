@@ -6,51 +6,55 @@
 
 
 {% block content %}
-    {% comment %}
-    Top part: Profile picture, name, bio, and social media links
-    {% endcomment %}
-    <div class="container bg-light min-vh-100 w-lg-50">
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                    {% if user_profile.profile_photo %}
-                    <img class="pfp rounded-circle mt-5 p-0" src="{{user_profile.profile_photo.url}}"
-                        alt="Profile Photo">
-                    {% endif %}
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h3 class="text-center mb-0">{{ user_profile.display_name }} </h3>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col">
-                    <p class="text-center mb-0 text-break fs-6">{{ user_profile.bio|linebreaks|cut:"<p>" }}
-                        {% comment %} Technically, the last closing </p> tag is not needed! {% endcomment %}
-                </div>
-            </div>
-            <div class="text-center">
-                {% for social in socials %}
-                <a class="fs-1 text-decoration-none text-black" href="{{ social.url }}"> <i class="bi bi-{{social.name}}"></i>
-                </a>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="container">
-            {% for url in urls %}
-            <div class="row justify-content-center mt-2">
-                <div class="col">
-                    <a class="btn w-100" href="{{url.url }}" role="button" target="_blank">{{url.title}}</a>
-                </div>
-            </div>
-            {% endfor %}
-            {% if current_user.username == user_profile.user.username %}
-                {% include "components/edit_bar.html" %}
+{% comment %}
+Top part: Profile picture, name, bio, and social media links
+{% endcomment %}
+<div class="container bg-light min-vh-100 w-lg-50">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            {% if user_profile.profile_photo %}
+            <img class="pfp rounded-circle mt-5 p-0" src="{{user_profile.profile_photo.url}}" alt="Profile Photo">
             {% endif %}
         </div>
+        {% comment %} <div class="row">
+            <div class="col">
+                <h3 class="text-center mb-0"> {% endcomment %}
+                    {{ user_profile.display_name }} 
+                {% comment %} </h3>
+            </div>
+        </div> {% endcomment %}
+        <div class="row justify-content-center">
+            <div class="col">
+                <p class="text-center mb-0 text-break fs-6">{{ user_profile.bio|linebreaks|cut:"<p>" }}
+                    {% comment %} Technically, the last closing </p> tag is not needed! {% endcomment %}
+            </div>
+        </div>
+        {% comment %} <div class="text-center"> {% endcomment %}
+            {% for social in socials %}
+            {% comment %} <a class="fs-1 text-decoration-none text-black" href="{{ social.url }}"> <i
+                    class="bi bi-{{social.name}}"></i>
+            </a> {% endcomment %}
+            <a href="{{ social.url }}"> <i
+                class="bi bi-{{social.name}}"></i>
+            </a>
+            {% endfor %}
+        {% comment %} </div> {% endcomment %}
     </div>
+    <div class="container">
+        {% for url in urls %}
+        {% comment %} <div class="row justify-content-center mt-2">
+            <div class="col"> {% endcomment %}
+                {% comment %} <a class="btn w-100" href="{{url.url }}" role="button" target="_blank">{{url.title}}</a> {% endcomment %}
+                <a href="{{url.url }}" target="_blank">{{url.title}}</a>
+
+            {% comment %} </div>
+        </div> {% endcomment %}
+        {% endfor %}
+        {% if current_user.username == user_profile.user.username %}
+        {% include "components/edit_bar.html" %}
+        {% endif %}
+    </div>
+</div>
 
 
-{% endblock %}
-
-{% block footer %}
 {% endblock %}

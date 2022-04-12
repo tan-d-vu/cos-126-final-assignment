@@ -55,27 +55,16 @@ class UserProfileDetailView(DetailView):
 
     # Get user profile to display from username parameter in URL
     def get_object(self, **kwargs):
-        _username = self.kwargs["username"]
+        _username = self.request.user.username
         user_to_display = User.objects.get(username=_username)
         return Profile.objects.get(user=user_to_display)
 
     # Get links associated with user profile and currently logged in user
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context[
-            "current_user"
-        ] = self.request.user  # Currently logged in user
+        context["current_user"] = self.request.user  # Currently logged in user
         # Get links associated with user profile
-        """
-        Bug: Missing user_to_display in context, in front end there will always
-        be the currently logged in user
-        (Confusing user_to_display and current_user)
-        => Add back in
-        Identify from assignment specs
-        """
-        user_to_display = User.objects.get(
-            username=self.kwargs["username"]
-        )
+        user_to_display = self.request.user
         links = Link.objects.filter(user=user_to_display)
         socials = SocialMedia.objects.filter(user=user_to_display)
         context["urls"] = links

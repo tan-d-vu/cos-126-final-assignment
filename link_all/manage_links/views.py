@@ -116,6 +116,7 @@ class LinkDeleteView(LoginRequiredMixin, ManageLinksMixin, DeleteView):
 
     model = Link
     template_name = "manage_links/link_form.html"
+    title = "Delete Link"
 
     def form_valid(self, form):
         # Reimplement original form_valid method
@@ -133,3 +134,4 @@ class SocialMediaDeleteView(LinkDeleteView):
 
     model = SocialMedia
     template_name = "manage_links/link_form.html"
+    title = "Delete Social Media"

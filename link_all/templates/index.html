@@ -2,16 +2,77 @@
 
 {% block title %}
 Index
+{% comment %}
+Task 1: Change the title of the page to the name of the website.
+{% endcomment %}
 {% endblock %}
 
 {% block content%}
-Index page with all URLs in the project.
+<div class="container-fluid vh-100 bg-dark d-flex align-items-center justify-content-center">
+    <div class="row">
+        <div class="row">
+            <h1 class="text-center text-white">Welcome To LinkAll</h1>
+        </div>
+        <div class="row">
+            <h3 class="text-center text-white">One Page to Link Them All</h3>
+        </div>
+        <div class="row">
+            <a class="text-center btn btn-lg btn-light" href="./register/" role="button">Get Started</a>
+        </div>
+    </div>
+</div>
+
+Index page with all current URLs in the project.
 {% for url in urls %}
 <a href="/{{ url }}">{{ url }}</a>
-<br />
+<br>
 {% endfor %}
 {% endblock %}
 
-{% block footer_block %}
-Footer
-{% endblock footer_block %}
+{% comment %}
+The "content" block is rendered inside the <body> tag of the HTML page which is where the content of the webpage should reside.
+Here, we will create a simple landing page with a dark background, big welcome text in the middle of the background
+with subtext, and a Get Started button that brings user to the registration page.
+
+First, you will need to define a container for the content, using Bootstrap container. In Bootstrap, container is a
+fundamental building block of Bootstrap that contain, pad, and align your content within a viewport/screen.
+
+There are 3 kinds of containers in Bootstrap:
+.container, which reaches a set max-width at each responsive breakpoint
+.container-fluid, which is always as wide as the screen
+.container-{breakpoint}, which is as wide as the screen until a specified breakpoint
+
+To keep thing simple, you will be using container-fluid. To create a container, reference:
+https://getbootstrap.com/docs/5.1/layout/containers/#fluid-containers
+
+We also want the container to take up the whole screen. To do so, we need to set the container's height. To do so,
+reference: https://getbootstrap.com/docs/5.0/utilities/sizing/#relative-to-the-viewport
+
+To set the background of the container to "dark", reference:
+https://getbootstrap.com/docs/5.0/utilities/background/#background-color
+
+If done correctly, you should now see a dark grey page at index.
+
+We can now try adding the texts and button. We want the texts and buttons to all be in the middle of the webpage;
+however, by default, they will be rendered at the top left of the screen. To overcome this, the simplest way is to
+put the texts and button inside a container and center them within the container, then center the container inside
+the webpage.
+
+To center the sub-container, we first enable flex on the container we created which makes the container flexbox and
+transform all its direct children elements (ie including the sub-container) into flex items. Then, we also need to
+apply the appropriate justify-content and align-items utilities. Reference here:
+1. https://getbootstrap.com/docs/5.0/utilities/flex/#enable-flex-behaviors
+2. https://getbootstrap.com/docs/5.0/utilities/flex/#justify-content
+3. https://getbootstrap.com/docs/5.0/utilities/flex/#align-items
+
+Finally, we can create the sub-container itself. The container will be a row that contains three smaller rows. Each
+smaller row will contain one of our desired elements. Remember to center each element within its row.
+Reference here:
+1. https://getbootstrap.com/docs/5.0/utilities/text/#text-alignment
+2. https://getbootstrap.com/docs/5.0/components/buttons/#button-tags
+
+If you've followed the instruction, your resulting webpage should look similar to reference photo listed in the
+assignment spec.
+
+You can now delete the code segment that display all the URLs in the project.
+{% endcomment %}

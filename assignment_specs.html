@@ -8,32 +8,72 @@
     <body>
         <center>
             <h1>Princeton University<br>
-                IW Spring 2022</h1>
-
+                IW Spring 2022
+            </h1>
             <h2>Assignment: A URL Directory Application: Web Version</h2>
         </center>
-
         <hr>
         <!-- =============================================================== -->
-
         <h2>Purpose</h2>
-
         <p>The purpose of this assignment is to help you learn the basic of web programming with
-            Django and HTML/CSS/JS.</p>
-
+            Django and HTML/CSS/JS.
+        </p>
         <hr>
         <!-- =============================================================== -->
-
         <h2>Background</h2>
-
         <h3>Intro to Django</h3>
-        <p>Intro to Django</p>
+        <p>Django is a Python-based free and open-source web development framework. It follows the model–template–views
+            architectural pattern, the specific of which will be explained to you as you follow this assignment.
+            Django is used widely to create complex database-driven websites. The framework has a strong emphasis on
+            code reusability and "pluggability" of components.
+        </p>
+        <p>
+            Django includes many built-in components that one would need to handle common web development tasks such as
+            user authentication, content administration. With this, it allows for rapid development and is called the
+            web framework for perfectionists with deadlines.
+        </p>
+        <p>
+            Python is used throughout the framework for everything from settings, creating data models, running
+            server,... It is very easy to use Django as backend for scientific computing (i.e. machine learning model,
+            data analysis) applications.
+        </p>
+        <p>
+            Well-known sites that use Django include Instagram, Bitbucket, and Clubhouse.
+        </p>
+        <p>
+            Lastly, Django may seem intimidating at first due to the amount of functionalities it offers. However,
+            thanks to a very thorough documentation, it is very easy to learn.
+        </p>
         <h3>Intro to HTML/CSS/JS</h3>
-        <p>Intro to HTML/CSS/JS</p>
+        <p>While we have web frameworks such as Django to take care of the back-end operations such as creating,
+            deleting data, we need something in the "front"-end to display such data.
+        </p>
+        <p>
+            The most basic front-end stack is consisted of HTML, CSS and JavaScript.
+        </p>
+        <p>To put in very simple terms, we can look at each of the three components as below:
+            <ul>
+                <li>
+                    HTML provides the basic structure of a web page, an unstyled skeleton-- like this webpage!
+                </li>
+                <li>
+                    CSS controls presentation, formatting, and layout of HTML elements.
+                </li>
+                <li>
+                    JavaScript makes both HTML and CSS better by adding interactiveness.
+                </li>
+            </ul>
+        </p>
+        <p>While the raw HTML/CSS/JS stack is powerful, to speed up development, in the real world, front-end
+            developers rarely not use prebuilt frameworks. One popular framework is Bootstrap, a free open-source
+            CSS framework that allows fast production of a responsive, mobile-friendly front-end.
+        </p>
+        <p>We will dive into Bootstrap to power the front-end of the application you will be building in this
+            assignment.
+        </p>
         <hr>
         <!-- =============================================================== -->
         <h2>Goals</h2>
-
         <ul>
             <li>ORM</li>
             <li>Debugging</li>
@@ -42,9 +82,7 @@
         </ul>
         <hr>
         <!-- =============================================================== -->
-
         <h2>Getting Started</h2>
-
         <p>This is an <strong>individual</strong> assignment. Before you begin coding, do the following:</p>
         <ul>
             <li>
@@ -52,15 +90,16 @@
                 </p>
             </li>
             <li>
-                <p>To run the project, you will need to have Python 3.8.10 (recommended) installed and create a virtual
-                    environment.</p>
+                <p>To run the project, you will need to have Python 3.8.10 (recommended) installed and create a
+                    virtual
+                    environment.
+                </p>
             </li>
-
             <li>
                 <p>Use the command line, cd into your working directory and run the command: <code> python3 -m venv
-                        myenv </code></p>
+                        myenv </code>
+                </p>
             </li>
-
             <li>
                 <p>Once the virtual environment is created, you can activate it by running the command:</p>
                 <ul>
@@ -72,7 +111,6 @@
                     </li>
                 </ul>
             </li>
-
             <li>
                 <p>Once the virtual environment is activated, you can install all dependencies by running: </p>
                 <ul>
@@ -80,7 +118,6 @@
                         <code> pip install -r requirements.txt </code>
                     </li>
                 </ul>
-
             <li>
                 <p>To run the starter code, change directory into <code>link_all</code> and run command:</p>
                 <ul>
@@ -91,385 +128,492 @@
                 <p>A server should be running on your machine at <code>http://127.0.0.1:8000/</code></p>
             </li>
             <li>
-                <p>On the index page, click on <code>/registration</code> and create an account. You will be logged in
-                    automatically.</p>
+                <p>On the index page, you should see a list of URLs. The application is not yet functional.</p>
             </li>
         </ul>
         <hr>
         <!-- =============================================================== -->
         <h2>Project Overview</h2>
         <ul>
-            <li>Project <code>link_all</code> contains 2 apps, <code>manage_links</code> and <code>manage_users</code>.</li>
+            <li>Project <code>link_all</code> contains 2 apps, <code>manage_links</code> and
+                <code>manage_users</code>.
+            </li>
             <li>All template files are located in <code>templates</code> folder.</li>
             <li>All static files are located in <code>static</code> folder.</li>
             <li>The database is stored in <code>db.sqlite3</code> file.</li>
-            <li>Specific files you concerned with tasks you will be working on will be listed under each task.</li> 
+            <li>Specific files you concerned with tasks you will be working on will be listed under each task.</li>
         </ul>
         <hr>
-
         <!-- =============================================================== -->
-        <h2>Your Task</h2>
-
+        <h2>Part 1: The Back-end</h2>
         <p> The current application is incomplete and is buggy! Your task is to debug the application and implement
             certain functions to make application... functional.
         </p>
-
         <p>
             <strong>Make sure to be logged in with your account before you start coding.</strong>
         </p>
-
-        <h3>Task 1: Displaying a user profile</h3>
-        <p> Currently, beside you, there is one user in the database, <code>user1</code>.</p>
-        <p> Expectedly, <code>user1</code> has profile page. If you look in the <code>manage_users/urls.py</code> file,
-        you will find that the URL for the profile page has the form of <code>profile/&lt;username&gt;/</code>.</p>
-        
+        <h3>Task 1: Create Data Tables Using Django Object Relational Mapper</h3>
+        <p>To create a table, which define your database layout, you will be editing the <code>models.py</code> file
+            in
+            each app's directory.
         </p>
-            Visist URL <code>&lt;your local host&gt;/profile/user01/</code> you should see a user profile page. Yours!
+        <p> A model is a single and definitive source of information about your data. It contains fields
+            (columns in database table) and behaviors (i.e. constraints of the data such as length, values,...) of
+            the data you want to store. Your models can reside in any file anywhere, but for simplicity and
+            efficiency,
+            the Django convention is to store all models of an app in its <code>models.py</code> file.
         </p>
-
-
-        <hr>
-        <!-- =============================================================== -->
-
-        <h2>The Application</h2>
-
-        <p>Compose a program named <code>runserver.py</code>. When executed with <code>-h</code> as a command-line
-            argument, <code>runserver.py</code> must display a help message that describes the program's behavior:</p>
-
+        <p>
+            In <code>manage_links</code>, we have provided you with an example model (not complete) for you to start
+            out.
+        </p>
         <pre>
-$ python runserver.py -h
-usage: runserver.py [-h] port
-
-The registrar application
-
-positional arguments:
-  port        the port at which the server should listen
-
-optional arguments:
-  -h, --help  show this help message and exit
-</pre>
-
-        <p>Your <code>runserver.py</code> program must run the Flask test server on the specified port, which in turn
-            must run your application.</p>
-
-        <p>Your application's primary page must contain a form. The form must allow the user to specify a
-            <code>dept</code>, <code>coursenum</code>, <code>area</code>, and/or <code>title</code>. The form also must
-            contain a button that the user can click to submit the form.</p>
-
-        <p>Your program must handle the '%' and '_' characters as ordinary (not wildcard) characters, just as described
-            in the Assignment 1 and 2 specifications.</p>
-
-        <p>In addition to the form, your primary page must display a table containing the results of the query that is
-            triggered by submission of the form. Specifically, the table must contain the <code>classid</code>,
-            <code>dept</code>, <code>coursenum</code>, <code>area</code>, and <code>title</code> of each class that
-            matches the specified criteria, or of <em>all</em> classes if the user specifies no criteria. The rows must
-            be sorted; the primary sort must be by <code>dept</code> in ascending order, the secondary sort must be by
-            <code>coursenum</code> in ascending order, and tertiary sort must be by <code>classid</code> in ascending
-            order.</p>
-
-        <p>Along with results of the query, your primary page also must display, within its form, the query criteria
-            that user entered to generate those results. For example, if the user entered <code>cos</code> in the
-            <code>dept</code> input of the form, entered <code>qr</code> in the <code>area</code> input of the form, and
-            submitted the form, then the resulting page must display <code>cos</code> in the <code>dept</code> input of
-            the form and <code>qr</code> in the <code>area</code> input of the form &mdash; along with the data for all
-            classes that match those query criteria.</p>
-
-        <p>Your primary page must allow the user to click on the <code>classid</code> for any of the classes that it
-            displays, thereby allowing the user to learn more about that class. When the user clicks on the
-            <code>classid</code> for a particular class, your application must display a "secondary" web page containing
-            the selected class's <code>courseid</code>, <code>days</code>, <code>starttime</code>, <code>endtime</code>,
-            <code>bldg</code>, <code>roomnum</code>, <code>dept(s)</code>, <code>coursenum(s)</code>, <code>area</code>,
-            <code>title</code>, <code>descrip</code>, <code>prereqs</code>, and <code>profname(s)</code>. The data must
-            be well formatted.</p>
-
-        <p>The secondary page must contain a page link back to the primary page, thus allowing the user easily to
-            perform another class search. In the resulting primary page, the form must show the same data that the user
-            entered most recently. The resulting primary page also must show the class data that resulted from the
-            submission of that form. Hint: Your application must be <em>stateful</em> to accomplish that.</p>
-
-        <p>Your application must be usable without a pointing device (mouse, touchpad, etc.). That is, your application
-            must be usable with only the keyboard. The user must be able to cycle the keyboard focus through the input
-            elements and links by pressing the Tab key, and trigger a server interaction by pressing the Enter key.</p>
-
-        <div style="padding:10px;border:5px solid green;">By default, the Firefox browser on Mac does not handle tabbing
-            between input elements and links. To enable tabbling, in Firefox click on <em>Preferences -> General</em>
-            and make sure the <em>Always use the cursor keys to navigate within pages</em> check button is unchecked.
-            Then, in Mac System Preferences, click on <em>Keyboard -> Shortcuts</em> and make sure the <em>All
-                Controls</em> radio button is checked.
-        </div>
-
-        <p>It is possible to design a better interface than the one just described. (In fact, you will do so later in
-            the course!) We assume that the layout of your application's pages will be the same as that of the reference
-            application. (A later section of this specification describes how to run the reference application.) If you
-            have a principled reason why you would like the layout of your application's pages to differ from that of
-            the reference application, then please discuss the matter with the course's instructors before you commit to
-            your design. No surprises please!</p>
-
-        <hr>
-        <!-- =============================================================== -->
-
-        <h2>Error Handling</h2>
-
-        <p>Your application must be robust. It must handle the following errors:</p>
-
-        <h3>Wrong command-line argument count</h3>
-
-        <p>If <code>runserver.py</code> is given an incorrect number of command-line arguments, then it must write a
-            descriptive error message &mdash; the one generated by argparse &mdash; to its <code>stderr</code> and exit
-            with status 2.</p>
-
-        <h3>Non-integer port</h3>
-
-        <p>If <code>runserver.py</code> is given a non-integer port command-line argument, then it must write a
-            descriptive error message &mdash; the one generated by argparse &mdash; to its <code>stderr</code> and exit
-            with status 2.</p>
-
-        <h3>Unavailable port</h3>
-
-        <p>If <code>runserver.py</code> is given a port command-line argument specifying a port that is already in use,
-            then it must write a descriptive error message &mdash; the one contained within the thrown exception &mdash;
-            to its <code>stderr</code> and exit with status 1.</p>
-
-        <h3>Non-existing classid</h3>
-
-        <p>If the user directly (that is, not through the primary page) commands the browser to fetch a page using a URL
-            that has a <code>classid=XXX</code> name/value pair, and no class with classid <code>XXX</code> exists, then
-            the application must send to the browser an application-specific reasonably-styled error page that displays
-            a "no class with classid XXX exists" error message.</p>
-
-        <p>A non-existing classid error also could occur if (1) the browser sends a "class overviews" query that
-            displays data for classid 8321 (the classid for COS 333), (2) some other process deletes the row with
-            classid 8321 from the classes table in the database, and (3) the browser sends a "class details" query for
-            classid 8321.</p>
-
-        <h3>Missing classid</h3>
-
-        <p>If the user directly (that is, not through the primary page) commands the browser to fetch a secondary page
-            using a URL that is missing the <code>classid=XXX</code> name/value pair, or that has a
-            <code>classid=XXX</code> name/value pair in which <code>XXX</code> is missing, then the application must
-            send to the browser an application-specific reasonably-styled error page that displays a "missing classid"
-            error message.</p>
-
-        <h3>Non-integer classid</h3>
-
-        <p>If the user directly (that is, not through the primary page) commands the browser to fetch a secondary page
-            using a URL has a <code>classid=XXX</code> name/value pair, and <code>XXX</code> is not an integer, then the
-            application must send to the browser an application-specific reasonably-styled error page that displays a
-            "non-integer classid" error message.</p>
-
-        <h3>Database cannot be opened</h3>
-
-        <p>If the database cannot be opened when the browser sends a query, then the application must write a
-            descriptive error message &mdash; the one contained within the thrown exception object &mdash; to its
-            <code>stderr</code>, and send to the browser an application-specific reasonably-styled error page that
-            contains the generic "A server error occurred. Please contact the system administrator." error message.</p>
-
-        <h3>Corrupted database</h3>
-
-        <p>If the database is corrupted when the browser sends a query, then the application must write a descriptive
-            error message &mdash; the one contained within the thrown exception object &mdash; to its
-            <code>stderr</code>, and send to the browser an application-specific reasonably-styled error page that
-            contains the generic "A server error occurred. Please contact the system administrator." error message.</p>
-
-        <hr>
-        <!-- =============================================================== -->
-
-        <h2>Reference Application</h2>
-
-        <p>A reference application is running at <a
-                href="https://assignment3reg.herokuapp.com">https://assignment3reg.herokuapp.com</a>. You can test your
-            application by comparing its behavior with that of the reference application.</p>
-
-        <div style="padding:10px;border:5px solid green;">
-            Of course the reference application delivers HTML code to your browser. You could use your browser's "view
-            source" feature to examine that code. In that sense part of the assignment solution is available to you.
-            <strong>Don't examine the code that the reference application delivers to your browser.</strong> Doing that
-            would decrease the value of the assignment for you, and would be a violation of course policies.
-        </div>
-        <br>
-        <div style="padding:10px;border:5px solid green;">
-            <p>You have no control of the database used by the reference application. So it won't be possible for you to
-                run the reference application when its database cannot be opened or has been corrupted. So it won't be
-                possible for you to observe the page generated by the reference application in those cases. And so this
-                screenshot shows that page:</p>
-
-            <img src="DatabaseErrors.png" width="400">
-        </div>
-
-        <hr>
-        <!-- =============================================================== -->
-
-        <h2>Testing</h2>
-
-        <p>We'll cover software testing techniques in lectures later in the semester. In the meantime, to test your work
-            on this assignment it will be sufficient to rely upon (1) your knowledge of testing from the COS 217 course,
-            and (2) this <a href="../TestingTaxonomy.pdf">A Software Testing Taxonomy</a> document.</p>
-
-        <p>Test your application by (1) reviewing this assignment specification thoroughly, making sure that your
-            application conforms to every aspect of it, and (2) comparing the behavior of your application with the
-            behavior of the reference application.</p>
-
-        <h3>Boundary Testing</h3>
-
-        <p>Focus on <em>boundary</em> (alias <em>corner case</em>) testing. Of course, you must make sure that your
-            application handles normal data. But you also must make sure that your application handles unusual data:
-            courses that have multiple cross-referenced departments/numbers, long titles, long descriptions, multiple
-            professors, no professors, and so forth. You also must make sure that your application handles errors: bad
-            manually-entered URLs, missing database, corrupted database, and so forth.</p>
-
-        <p>Hint: Make sure your application handles queries for these titles: <code>"Independent Study"</code>,
-            <code>"Independent Study&nbsp;"</code>, <code>"Independent Study&nbsp;&nbsp;"</code>,
-            <code>"&nbsp;Independent Study"</code>, and <code>"&nbsp;&nbsp;Independent Study"</code>.</p>
-
-        <h3>Statement Testing</h3>
-
-        <p>Also focus on <em>statement</em> (alias <em>coverage</em>) testing. Your tests should cause every statement
-            of your application to be executed.</p>
-
-        <p>You're encouraged, but not required, to use the Python <code>coverage</code> tool to generate a coverage
-            report showing which lines of your application have and have not been executed by your tests. These are the
-            steps:</p>
-
-        <ol>
-
-            <li>Delete the <code>debug=True</code> argument within the call of <code>app.run()</code>. The Python
-                coverage tool doesn't work with Flask in debug mode.</li>
-
-            <li>Launch your application server via the command <code>python -m coverage run -p --source=. runserver.py
-                    <em>someport</em></code>.</li>
-
-            <li>Use a browser to interact with your application, thereby creating a <code>.coverage<em>X</em></code>
-                file.</li>
-
-            <li>Exit your application server.</li>
-
-            <li>Repeat steps 2 through 4 as desired.</li>
-
-            <li>Issue the command <code>python -m coverage combine</code> to combine the coverage reports generated by
-                steps 2 through 4 into one large coverage report in a file named <code>.coverage</code>.</li>
-
-            <li>Issue the command <code>python -m coverage html</code> to use the <code>.coverage</code> file to
-                generate a human-readable report as a set of HTML documents in a directory named <code>htmlcov</code>.
-            </li>
-
-            <li>Browse to <code>htmlcov/index.html</code> to check the report.</li>
-
-            <li>The files in your <code>htmlcov</code> directory should show that 100% of your application's lines were
-                executed. If the report doesn't show 100% coverage, then revise your testing plan accordingly, delete
-                the <code>.coverage</code> file and the <code>htmlcov</code> directory, and repeat steps 2 through 8.
-            </li>
-        </ol>
-
-        <div style="padding:10px;border:5px solid green;">
-            If you're using a MS Windows local computer...<br><br>
-
-            Issuing the command <code>python -m coverage run -p runserver.py <em>someport</em></code> creates a process
-            that should loop infinitely. On a MS Windows system, the easiest way for you to kill that process is by
-            typing Ctrl-c, Ctrl-break, or whatever works on your particular computer.<br><br>
-
-            However, on at least some MS Windows computers, killing the process in that abrupt way suppresses generation
-            of the coverage report. So you may not be able to generate your coverage report on your local MS Windows
-            computer. You may need to generate your coverage report on courselab.
-        </div>
-
-        <h3>Test Automation</h3>
-
-        <p>It's not easy to automate the testing of a web application. But you could do so using a tool named <a
-                href="https://www.selenium.dev/">Selenium</a>. See me if you're interested; I can provide a minimal
-            example showing how to get started testing your application with Selenium. If you're clever you could use
-            Selenium to generate your coverage report.</p>
-
-        <hr>
-        <!-- =============================================================== -->
-
-        <h2>Submission</h2>
-
-        <p>Compose a <code>readme</code> file. If you're working on the assignment alone, then the first line of your
-            <code>readme</code> file must contain your Princeton netid, and nothing else. If you're working on the
-            assignment with a teammate, then the first line of your <code>readme</code> file must contain your Princeton
-            netid and your teammate's Princeton netid with an underscore between the two, and nothing else. That
-            information in that format will help us to automate the process of determining who worked with whom.</p>
-
-        <p>Thereafter your <code>readme</code> file must contain:</p>
-
+            <code>
+          # Link model
+          class Link(models.Model):
+              url = models.URLField()
+              title = models.CharField()
+              user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+              def __str__(self):
+                  """Returns a string representation of the model."""
+                  return self.title
+            </code>
+        </pre>
+        <p>
+            Each model is represented by a class that subclasses or extends <code>django.db.models.Model</code> and
+            has
+            a number of
+            class variables which represent database fields.
+        </p>
+        <p>
+            Each field is a Field class. Above, we have <code>CharField</code> for character fields and URLField for
+            URL. This
+            specifies the datatype each field holds.
+        </p>
+        <p>
+            The field's name is going to be used as your database column names.
+        </p>
+        <p>
+            Certain Field classes have required arguments. For example, <code>CharField</code> requires a
+            <code>max_length</code>
+            that is missing from the provided code, and you should add. A Field can also have various optional
+            arguments
+            such as default values.
+        </p>
+        <p>
+            Finally, to specify relationships between database tables, we use one of the three keywords
+            <code>ForeignKey</code> (for Many to One), <code> ManyToManyField</code> and <code>OneToOneField</code>.
+        </p>
+        <p>
+            For example, in the provided code, we want multiple (many) links to relate to one User, so we specify
+            the
+            <code>user</code> field to be the key linking <code>Link</code> and <code>User</code>.
+        </p>
+        <p>
+            <code>on_delete=models.CASCADE</code> lets the application know when an User is deleted, also delete the
+            <code>Link</code> related to the User.
+        </p>
+        <p>In this task, you will be filling in the fields in <code>Link</code> and also finishing the rest of the
+            database in <code>manage_links</code> and <code>manage_users</code> by implementing the models as
+            described
+            below:
+        </p>
+        <h4> Link: </h4>
         <ul>
-            <li>Your name, your teammate's name, and the assignment number.</li>
-
-            <li>A paragraph describing your contribution, and another paragraph describing your teammate's contribution.
-                Please be thorough; we're looking for two substantial paragraphs, not a sentence or two.</li>
-
-            <li>A description of whatever help (if any) you received from other people while doing the assignment, as
-                prescribed by the course <em>Policies</em> web page.</li>
-
-            <li>A description of the sources of information that you used while doing the assignment.</li>
-
-            <li>An indication of how much time you spent doing the assignment.</li>
-
-            <li>Your assessment of the assignment: Did it help you to learn? What did it help you to learn? Do you have
-                any suggestions for improvement? Etc.</li>
-
-            <li>(Optionally) Any information that will help us to grade your work in the most favorable light. In
-                particular you must describe all known bugs.</li>
+            <li>Model in <code>manage_links</code></li>
+            <li>url: URL field containing URL; can't be blank</li>
+            <li>title: Character field; can't be blank; length can't exceed 300 characters</li>
+            <li>user: specify many to one relationship with <code>User</code>; on User-delete, delete related
+                <code>Link</code>
+            </li>
+            <li>String representation: title</li>
         </ul>
-
-        <p>Your <code>readme</code> file must be a plain text file. Don't create your <code>readme</code> file using
-            Microsoft Word or any other word processor.</p>
-
-        <p>Submit your assignment files on <code>courselab</code> using these commands:</p>
-
-        <blockquote>
+        <h4> SocialMedia: </h4>
+        <ul>
+            <li>Model in <code>manage_links</code></li>
+            <li>url: URL field containing URL to social media; can't be blank</li>
+            <li>name: Character field; can't be blank; length can't exceed 300 characters; can take one of these
+                choices: <code>facebook, instagram, youtube, twitter, spotify, reddit</code>
+            </li>
+            <li>user: specify many to one relationship with <code>User</code>; on User-delete, delete related
+                <code>SocialMedia</code>
+            </li>
+            <li>String representation: name</li>
+        </ul>
+        <h4> Profile: </h4>
+        <ul>
+            <li>Model in <code>manage_users</code></li>
+            <li>display_name: Character field; can be blank; length can't exceed 200 characters</li>
+            <li>bio: Text field; no constraint</li>
+            <li>profile_photo: Image field; can be blank; uploaded to folder <code>pfp</code> inside folder
+                <code>media</code>
+            </li>
+            <li>background_photo: Image field; can be blank; uploaded to folder <code>bgp</code> inside folder
+                <code>media</code>
+            </li>
+            <li>String representation: username</li>
+        </ul>
+        <p>
+            To accomplish this task, refer to these resources:
+            <p><a href="https://docs.djangoproject.com/en/4.0/ref/models/fields/" target="_blank">Model Fields</a>
+            </p>
+            <p><a href="https://docs.djangoproject.com/en/4.0/topics/db/examples/" target="_blank">Model
+                    Relationships</a>
+            </p>
+        </p>
+        <p>
+            When you are satisfied with your implementation, you can apply the changes to your application database
+            by
+            running the following commands:
             <pre>
-submit 3 readme
-submit 3 runserver.py
-submit 3 <em>allFilesComprisingYourApplication</em>
-</pre>
-        </blockquote>
-
-        <p>As noted above in the <em>Rules</em> section, it must be the case that either you submit all of your team's
-            files or your teammate submits all of your team's files. (It must not be the case that you submit some of
-            your team's files and your teammate submits some of your team's files.) You may submit multiple times; we'll
-            grade the latest files that you submit.</p>
-
-        <p><strong>
-                <font color="red">Please follow the rules on what to submit.</font>
-            </strong> It will be a big help to us if you get the filenames right and submit exactly what's asked for.
-            Thanks.</p>
-
-        <hr>
+                <code>
+                    python manage.py makemigrations manage_links manage_users
+                    python manage.py migrate
+                </code>
+            </pre>
+            If everything is correct, you should see the following message in the terminal:
+            <pre>
+                <code>
+                Migrations for 'manage_links':
+                  manage_links/migrations/0001_initial.py
+                    - Create model SocialMedia
+                    - Create model Link
+                Migrations for 'manage_users':
+                  manage_users/migrations/0001_initial.py
+                    - Create model Profile
+                </code>
+            </pre>
+            Make sure this step is complete before proceeding to the next task.
+        </p>
         <!-- =============================================================== -->
-
-        <h2>Grading</h2>
-
-        <p>Assume that your grader already has activated the cos333 virtual environment before he/she runs your
-            programs. The document from the first lecture entitled <em>A COS 333 Computing Environment</em> describes
-            the cos333 virtual environment.</p>
-
-        <p>Your grade will be based upon:</p>
-
+        <h3>Task 2: Create Database Entries with Signals</h3>
+        <p>
+            Now that you have created a Profile model associated with each user, it would be a good idea to
+            investigate
+            how to create a profile.
+        </p>
+        <p>
+            There are a few ways to approach this problem such as manually using the Django Admin Console or using a
+            form. However, in a real application, a profile would be created automatically after a user is
+            registered.
+        </p>
+        <p>
+            Django provides an elegant way of doing this using a built-in tool called <code>signals</code>. To put
+            very
+            simply, <code>signals</code> allow certain <i>senders</i> to notify certain <i>receivers</i> that some
+            action has taken place.
+        </p>
+        <p>
+            <code>signals</code> is an essential part of the Django framework and is used widely to perform actions
+            on
+            modification/creation of a particular entry in database or to validate data.
+        </p>
+        <p>
+            There are a few concepts to note when using <code>signals</code>:
+            <ul>
+                <li>Sender: a model that notifies the receiver when an event occurs </li>
+                <li>Receiver: a function that works on the data once it is notified by the sender </li>
+                <li>The connection between the senders and the receivers is communicated through “signal
+                    dispatchers”
+                </li>
+            </ul>
+        </p>
+        <p>
+            Generally, all signals used in an app is placed in a file <code>signals.py</code> in the app's
+            directory.
+        </p>
+        <p>
+            There are two tasks you need to complete for this section:
+            <h4>1. Using signals to create Profile on user creation </h4>
+            For this first task, you will need to figure out where to place the <code>signals.py</code> file that is
+            responsible for creating a Profile. You will have to copy the code provided below into the file.
+            <pre>
+                            <code>
+                            from django.contrib.auth.models import User
+                            from django.dispatch import receiver
+                            from .models import Profile
+                            ###
+            
+                            @receiver(###Signals type###, sender=###)
+                            def create_user_profile(sender, instance, created, **kwargs):
+                                # instance is a reference to user being registered
+                                if created:
+                                    Profile.objects.create(###)
+                            
+                            @receiver(###Signals type###, sender=###)
+                            def save_user_profile(sender, instance, **kwargs):
+                                instance.profile.save()
+                            </code>
+                        </pre>
+            And finding out what you should be filling into the missing part (###) of the code to satisfy the
+            desired
+            behaviors listed below:
+            <ul>
+                <li><code>Profile</code> is created after a user is registered. </li>
+                <li><code>Profile</code> is created with default <code>display_name</code> being the user's
+                    username;
+                    default bio being "Hello, my name is <code>display_name</code>."
+                </li>
+            </ul>
+            <b>Hints:</b>
+            <ul>
+                <li>
+                    Reference <a href="https://docs.djangoproject.com/en/4.0/topics/signals/" target="_blank">this
+                        <a>
+                            for which signals type to use.
+                </li>
+                <li>To specify which model the sender is, use the model's name.</li>
+                <li>Here is the syntax to create an entry in the database: <code>[Model Name].objects.create([Field
+                        Name]=value)</code>
+            </ul>
+            <h4>2. Using signals to create Profile on user creation </h4>
+            For the second task, you will demonstrate your understanding of using <code>signals</code> by creating a
+            signal in the <code>manage_links</code> app.
+            <br>
+            For this task, create a signal that <b>after the user's profile
+                is created, add a link associated to the user with title being "My LinkAll Page" and URL being
+                "http://localhost:8000/profile/[username]/".</b>
+        </p>
+        <p>
+            After finishing both tasks, you can try creating an account and you should see your profile similar to
+            follow:
+            [Add photo]
+        </p>
+        <!-- =============================================================== -->
+        <h3>Task 3: Add and Remove Link/SocialMedia Using Class-based View</h3>
+        <p>It would be helpful to provide users with a way to add or remove links from their profile. </p>
+        <p>To configure the backend of this functionality, we employ <code>views</code> which is one of the cores of
+            Django.</p>
+        <p>A view is either a function or a class which takes a request and returns a response. </p>
+        <p>Function-based and class-based views have their own pros and cons. In our case, class-based view is a
+            more
+            efficient choice because it allows you to reuse code. </p>
+        <p>You can reason this by looking at the structures of <code>Link</code> and <code>SocialMedia</code>. They
+            are
+            similar so it makes sense that it will be very similar to create, edit and remove entries of this type
+            from
+            the database. However, class-based view is helpful to make create, edit and remove operations easy in
+            general, given that no complicated data validation or manipulation is needed.</p>
+        <p>In <code>manage_links/views.py</code>, we have provided you with a "mixin", ManageLinksMixin, which
+            contain
+            methods that the create, edit and remove operations of <code>Link</code> and <code>SocialMedia</code>
+            share.
+            In object-oriented programming languages, a mixin is a class which contains a combination of methods
+            from
+            other classes.
+            <br>
+            Your task is to complete the functions inside this mixin and use the mixin to complete the rest of the
+            <code>views.py</code> as described below.
+        </p>
+        <h4>ManageLinksMixin</h4>
         <ul>
-            <li>Correctness, that is, the correctness of your application as specified by this document and the given
-                reference application.</li>
-
-            <li>Style, that is, the quality of your program style as reported by the <code>pylint</code> tool, when
-                using the given <code>.pylintrc</code> file, and when executed via the command <code>python -m pylint
-                    *.py</code>.</li>
+            <li> Contains common methods used in other views</li>
+            <li> def form_valid(self, form): Add ForeignKey relationship between new link and current logged in user
+            </li>
+            <li> def get_context_data(self, **kwargs): Add current logged in user, the user's existing Link or
+                SocialMedia and the title of the page to the <code>context</code> dictionary.</li>
+            <li>Other functions have been implemented for you and should be looked at as hints.</li>
         </ul>
-
-        <p>Ten points (that is, ten percent) of your grade will be based upon the quality of your program style as
-            reported by <code>pylint</code>. Your grader will start with the 10-point score reported by
-            <code>pylint</code>. Your grader then will "round down" that score to the 0.5 level to compute your program
-            style grade. For example, if your <code>pylint</code> score is 9.8, then your program style grade will be
-            9.5; if your <code>pylint</code> score is 7.4, then your program style grade will be 7.0.</p>
-
-        <p>If your code fails the tests on some particular functionality, then your grader won't be able to inspect your
-            code manually to try to assign partial credit for that functionality. So please make sure your code behaves
-            properly.</p>
-
+        <h4>LinkCreateView</h4>
+        <ul>
+            <li>View to create a new Link entry in database.</li>
+            <li>Implemented for you and should be looked at as hints to complete other views classes</li>
+        </ul>
+        <h4>LinkUpdateView</h4>
+        <ul>
+            <li>View to update an existing Link entry in database.</li>
+        </ul>
+        <h4>SocialMediaCreateView</h4>
+        <ul>
+            <li>View to create a new SocialMedia entry in database.</li>
+        </ul>
+        <h4>SocialMediaUpdateView</h4>
+        <ul>
+            <li>View to update an existing SocialMedia entry in database.</li>
+        </ul>
+        <h4>LinkDeleteView</h4>
+        <ul>
+            <li>View to delete an existing Link entry in database.</li>
+            <li>The <code>form_valid</code> function is implemented for you.</li>
+        </ul>
+        <h4>SocialMediaDeleteView</h4>
+        <ul>
+            <li>View to delete an existing SocialMedia entry in database.</li>
+        </ul>
+        <p>In general, these views are very similar and short (which isn't always the case)! That is thanks to
+            <code>ManageLinksMixin</code> we don't have to repeat more code than necessary. </p>
+        <h4>Reference <a href="https://docs.djangoproject.com/en/4.0/ref/class-based-views/generic-editing/"
+                target="_blank">this</a> to figure out which class you should subclass your views with beside
+            <code>ManageLinksMixin</code>.</h4>
+        <!-- =============================================================== -->
+        <h3>Task 4: Mapping Your Views to URLs</h3>
+        <p>To see your views in action, you have to connect them to their respective URLs. </p>
+        <p>In Django, you can configure and organize your URLs however you want. However, it is good practice to
+            organize them by app.
+        </p>
+        <p>As you can see, each app <code>manage_links</code> and <code>manage_users</code> has its own
+            <code>urls.py</code> file.
+        </p>
+        <p>In <code>manage_links/urls.py</code> the configuration for <code>LinkCreateView</code> and
+            <code>LinkUpdateView</code> are already created for you. Your task is to follow the same structure
+            and add in the configurations for the rest of the views.
+        </p>
+        <p><b>Note:</b> <code>pk</code> stands for "Primary Key" which we have to supply the URL with for
+            the
+            application to know which item it is editing or deleting. You can see how it is used in function
+            <code>get_object</code> at the end of the mixin.
+            <br>
+            In general, you can pass any and as many arguments as you need in a URL.
+        </p>
+        <!-- =============================================================== -->
+        <h3>Task 5: Displaying a User Profile</h3>
+        <p>After successfully completing Task 4, our website is mostly functional! </p>
+        <p>You will notice that there are no users on the website besides the ones you may have created so
+            far
+            to debug the last tasks.
+        </p>
+        <p>We will now populate the database with a script. To make sure there's no conflict, flush the
+            database
+            before continuing: <code>python manage.py flush</code>
+        </p>
+        <p>From your project folder, run the command <code>python populate.py</code> to populate the
+            database
+            with some "sample users". Finally, make an account for yourself and add some links and social
+            media
+            unique to you.
+        </p>
+        <p> Expectedly, each user has profile page. If you look in the <code>manage_users/urls.py</code>
+            file,
+            you will find that the URL for the profile page has the configuration:
+            <code>profile/&lt;username&gt;/</code>.
+        </p>
+        <p> Visist URL <code>&lt;your local host&gt;/profile/sample_user_1/</code> you should see a user
+            profile
+            page but with your information!
+        </p>
+        <p> Visiting any other profile will still show your info and this is not our desired behavior. </p>
+        <p> Your first task is <b> to investigate and debug the view associated with this URL configuration.
+            </b>
+        </p>
+        <p> Second, you also want to display the links and social medias you have added earlier. </p>
         <hr>
         <!-- =============================================================== -->
-
-        <p align="right"><small>This assignment was written by Robert M. Dondero, Jr.</small></p>
-
+        <h2>Tips</h2>
+        Followings are several tips you may find helpful when doing Part 1:
+        <ul>
+            <li> If you get stuck on Task 1 (i.e. running makemigrations gives errors), make sure you read
+                the
+                documentations carefully.
+            </li>
+            <li> Before getting your signals working (Task 2), it is a good idea to "flush" the database
+                before
+                you
+                try creating a new user by running the command <code>python manage.py flush</code> in the
+                terminal.
+            </li>
+            <li> For Task 3, make sure your <code>ManageLinksMixin</code> works properly by looking at
+                <code>LinkCreateView</code>'s behavior.
+            </li>
+            <li> Work on Task 3 and Task 4 at the same time! Debugging your views one at a time and make
+                sure it
+                is
+                working before moving on to the next one.
+            </li>
+        </ul>
+        <hr>
+        <!-- =============================================================== -->
+        <h2>Part 2: The Front-end</h2>
+        <p>In this part, we will complete the front-end of the application. </p>
+        <p>Being a web framework, Django requires way to generate webpage dynamically. The simplest approach uses
+            the template system. A template file contains the static parts of the desired output as well as
+            Python-like syntax that determines when and where content would be inserted.
+        </p>
+        <p>
+            The syntax is made possible by the Django Template Engine/Language. Each template recieves a
+            <code>context</code> object which is a dictionary of data that would be render in the template.
+        </p>
+        <p>
+            In this assignment, we will not dive into these
+            syntaxes. This part of the template files is already completed for you.</p>
+        <p>Before jumping into the tasks, let's take a quick look at where we store our templates.</p>
+        <p>There are many ways to organize template files. In this project, we place all template files into one folder
+            <code>templates</code> at the same level at the apps.</p>
+        <p>The folder has the following content and structure: </p>
+        <pre>
+            <code>
+            templates/ -- contains all template files
+                index.html -- project-wide index page
+                commons/ -- template(s) used by multiple apps
+                    form_commons.html -- common template for login/registration/add/update Link and SocialMedia
+                components/ -- HTML snippets separated for modularity
+                    edit_bar.html -- buttons for updating Profile
+                    nav_bar.html -- navigation bar
+                manage_links/ -- template(s) for manage_links app
+                    link_form.html -- template used for add/update Link and SocialMedia
+                manage_users/ -- template(s) for manage_users app
+                    profile_detail.html -- template for displaying user profile
+                    profile_update.html -- template for updating user profile
+            </code>
+        </pre>
+        <p> Note that there are more files and subfolders not listed that you don't need to concern.</p>
+        <p> In Part 2 of the assignment, you will be looking at mainly <code>index.html</code>,
+            <code>nav_bar.html</code> and <code>profile_detail.html</code>.</p>
+        <!-- =============================================================== -->
+        <h3>Task 1: "Fixing" The Index Page</h3>
+        <p>Currently, the index page is quite messy, displaying all current URL configurations in the project. Ideally,
+            we want something more attractive-- a landing page. To get introduced to Bootstrap, you will be implementing
+            a simple landing page with Bootstrap 5 using instructions inside the <code>index.html</code> file. </p>
+        <p> If you follow the instructions, your landing page should look similar to this:
+            <br>
+            <img src="./reference_landing_page.png" alt="landing page" width="1000">
+        </p>
+        <p> You are free to play around with the Bootstrap framework to make it look more appealing. </p>
+        <!-- =============================================================== -->
+        <h3>Task 2: Making a Navigation Bar</h3>
+        <p> Now let's add a navigation bar to make moving around the website easier. </p>
+        <p> Bootstrap provides you with a simple way to make this possible. </p>
+        <p> Reference the documentation <a href="https://getbootstrap.com/docs/5.0/components/navbar/"
+                target="_blank">here.</a> </p>
+        <p>Place your nav bar code in <code>nav_bar.html</code>.</p>
+        <p>
+            You are welcome to make the nav bar as complex or simple as you wish. However, it has to meet the following
+            requirements:
+        </p>
+        <ul>
+            <li>Has to have the title of the website; when clicked bring users to the index page</li>
+            <li>Has to have a Home button; when clicked bring users to the index page</li>
+            <li>When user is not logged in, display a Login button that when clicked bring the user to the Login page
+            </li>
+            <li>When user is logged in, display a Logout button that when clicked logs the user out</li>
+            <li>When user is logged in, display a Profile button that when clicked bring the user to their profile page
+            </li>
+        </ul>
+        <p>The logic needed for the 2 latter requirements is implemented for you. </p>
+        <!-- =============================================================== -->
+        <h3>Task 3: Fixing the Profile Page</h3>
+        <p>Lastly, we should finish by updating the Profile Page</p>
+        <p>There are three main parts you need to address: the display name, the social media buttons, and the URLs.</p>
+        <p>You have the freedom to display each part how you want. However, in general, here are two suggestions for a
+            simple solution:</p>
+        <ul>
+            <li>Recall how to center text within a container/row</li>
+            <li>URLs should be displayed as buttons</li>
+            <li>Use row and col</li>
+        </ul>
+        <p>You are welcome to be creative and play around with other parts of the page. </p>
+        <hr>
+        <!-- =============================================================== -->
+        <h2>Submission and Grading</h2>
+        <p>Submit a zip file (compression) of your <code>link_all</code> folder. </p>
+        <p>Your back-end will be graded with an autograder. You will recieve full marks if 
+        the autograder passes. Otherwise, points will be deducted on a case to case basis after manual review. Part 1 is worth 12 points. 
+        </p>
+        <p>Your front-end will be graded mannually. Your layout should be well formatted i.e. no unintended out of center elements.
+        Buttons and nav bar should be working as specified. Points will be deducted on a case to case basis. Part 2 is worth 8 points.
+        </p>
+        <hr>
+        
     </body>
 
 </html>
